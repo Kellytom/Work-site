@@ -1,0 +1,9 @@
+{
+  "extends": "@astrojs/ts-config-base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
