@@ -1,7 +1,19 @@
 import { defineConfig } from 'astro/config';
 
+
+import pagefind from "astro-pagefind";
+import preact from '@astrojs/preact';
+
+
+
+
+
 // https://astro.build/config
 export default defineConfig({
+  integrations: [
+    preact(),
+    pagefind(),
+  ],
   // Enable TypeScript support
   typescript: {
     strictMode: true,
