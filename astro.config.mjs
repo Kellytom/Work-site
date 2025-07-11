@@ -6,7 +6,8 @@ export default defineConfig({
   typescript: {
     strictMode: true,
   },
-  // Configure build output
+  // Use relative base for static output
+  base: '',
   build: {
     assets: 'assets'
   },

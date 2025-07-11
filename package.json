@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.3.0",
-    "@astrojs/ts-config-base": "^0.1.0",
     "typescript": "^5.0.0"
   }
 }
