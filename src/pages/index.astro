@@ -1,4 +1,6 @@
 ---
+import SearchBar from "../components/SearchBar.tsx";
+
 title: "FF2: Responsive Menu Demo"
 ---
 
@@ -19,9 +21,9 @@ title: "FF2: Responsive Menu Demo"
       <option value="dark">Dark</option>
       <option value="system">System</option>
     </select>
-    <form class="search-form desktop-only" role="search">
-      <input type="search" placeholder="Search..." aria-label="Search" />
-    </form>
+    <div class="desktop-only" style="display: flex; align-items: center;">
+      <SearchBar client:load />
+    </div>
     <!-- Mobile menu -->
     <ul class="menu" id="main-menu">
       <li class="mobile-only">
@@ -33,9 +35,7 @@ title: "FF2: Responsive Menu Demo"
         </select>
       </li>
       <li class="mobile-only">
-        <form class="search-form" role="search">
-          <input type="search" placeholder="Search..." aria-label="Search" />
-        </form>
+        <SearchBar client:load />
       </li>
       <li class="dropdown">
         <button class="dropdown-toggle" tabindex="0">
