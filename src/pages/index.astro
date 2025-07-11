@@ -65,7 +65,7 @@ title: "FF2: Responsive Menu Demo"
       </li>
       <li class="dropdown">
         <button class="dropdown-toggle" tabindex="0">
-          <span>Motive</span>
+          <span>Motivating</span>
         </button>
         <ul class="submenu">
           <li><a href="/menu3/sub1">Motive-1</a></li>
@@ -77,7 +77,7 @@ title: "FF2: Responsive Menu Demo"
       </li>
       <li class="dropdown">
         <button class="dropdown-toggle" tabindex="0">
-          <span>Move</span>
+          <span>Moving</span>
         </button>
         <ul class="submenu">
           <li><a href="/menu4/sub1">Sport</a></li>
@@ -340,6 +340,19 @@ body[data-theme="sunset"] {
     width: 100%;
     margin: 0.5em 0;
   }
+  /* Ensure submenus are closed by default in mobile */
+  .dropdown .submenu {
+    display: none;
+  }
+  .dropdown.open .submenu {
+    display: block;
+    position: static;
+    background: #333;
+    min-width: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 @media (min-width: 801px) {
   .mobile-only {
@@ -405,18 +418,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
   console.log('Dropdown toggles found:', dropdownToggles.length);
   dropdownToggles.forEach(function(btn, idx) {
-    console.log('Attaching event to dropdown-toggle', idx, btn);
     btn.addEventListener('click', function(e) {
-      console.log('Dropdown-toggle clicked:', btn, 'Mobile:', isMobile());
       e.preventDefault();
       const parent = btn.parentElement;
-      if (parent && parent.classList.contains('open')) {
-        parent.classList.remove('open');
-        console.log('Dropdown closed');
-      } else if (parent) {
-        closeAllDropdowns();
-        parent.classList.add('open');
-        console.log('Dropdown opened');
+      if (!parent) return;
+      if (isMobile()) {
+        // Only one open at a time in mobile
+        if (parent.classList.contains('open')) {
+          parent.classList.remove('open');
+        } else {
+          closeAllDropdowns();
+          parent.classList.add('open');
+        }
+      } else {
+        // Desktop: open on click, close others
+        if (parent.classList.contains('open')) {
+          parent.classList.remove('open');
+        } else {
+          closeAllDropdowns();
+          parent.classList.add('open');
+        }
       }
     });
   });
